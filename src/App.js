@@ -1,4 +1,6 @@
 import React from 'react';
+import NewToDo from './components/NewToDo'
+import TodoList from './components/TodoList'
 import './App.css'
 
 class App extends React.Component{
@@ -67,24 +69,20 @@ class App extends React.Component{
     return (
       <div className="App">
         <h1>{this.state.message}</h1>
-        <form onSubmit={(e) => this.HandleSubmit(e)}> 
-          <input onChange={(e) => this.HandleChange(e)} type="text" placeholder="Add ToDo" value={this.state.newTodo}/>
-          <button type="submit" className="btn btn-secondary">Add</button>
-        </form>
-          <button onClick={() => this.HandleAllDone()}>All done</button>
-        <ul>
-          {
-            this.state.todos.map((todo, index) => {
-              return (
-                <li key={todo.title}>
-                  <input onChange={(e) => this.ToggleTodoDone(e, index)} type="checkbox" checked={todo.done}/>
-                  <span className={todo.done ? 'done' : ''}>{todo.title}</span>
-                  <button onClick={() => this.HandleDelete(index)}>Delete</button>
-                </li>
-            )})
-          }
-        </ul>
+        <NewToDo 
+          handleSubmit={(e) => this.HandleSubmit(e)}
+          handleChange={(e) => this.HandleChange(e)}
+          newTodo={this.state.newTodo}
+          />        
+        <button onClick={() => this.HandleAllDone()}>All done</button>
+        <TodoList
+          todos={this.state.todos}
+          toggleTodoDone={this.ToggleTodoDone.bind(this)}
+          handleDelete={this.HandleDelete.bind(this)}
+        />
       </div>
+      //Si la función tiene más de un parámetro, solo funciona con bind
+      //Bind también se puede usar para las funciones que solo reciben el evento
     );
   }
 }
