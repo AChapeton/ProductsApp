@@ -74,7 +74,7 @@ class App extends React.Component{
           handleChange={(e) => this.HandleChange(e)}
           newTodo={this.state.newTodo}
           />        
-        <button onClick={() => this.HandleAllDone()}>All done</button>
+        <button className="btn btn-primary" onClick={() => this.HandleAllDone()}>All done</button>
         <TodoList
           todos={this.state.todos}
           toggleTodoDone={this.ToggleTodoDone.bind(this)}

@@ -7,7 +7,9 @@ const NewToDo = (props) => {
                 <input onChange={props.handleChange} 
                        type="text" 
                        placeholder="Add ToDo" 
-                       value={props.newTodo}/>
+                       value={props.newTodo}
+                       className="w-75"
+                       />
                 <button type="submit" className="btn btn-secondary">
                     Add
                 </button>
